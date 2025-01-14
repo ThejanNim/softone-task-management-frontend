@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TasksService } from '../shared/tasks.service';
+import { Task } from '../shared/task.interface';
 
 @Component({
   selector: 'app-create-task',
@@ -19,7 +20,7 @@ export class CreateTaskComponent {
     private taskService: TasksService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CreateTaskComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { todo?: any }
+    @Inject(MAT_DIALOG_DATA) public data: { todo?: Task }
   ) {
     this.todoForm = this.fb.group({
       id: [data.todo ? data.todo.id : ''],
@@ -40,20 +41,19 @@ export class CreateTaskComponent {
       this.taskService.addTask({
         title: this.todoForm.value.title,
         description: this.todoForm.value.description,
-        userId: userId
-      }).subscribe(
-        (response: any) => {
-
+        userId: userId,
+        isChecked: false
+      }).subscribe({
+        next: (response: Task) => {
           this.todoForm.patchValue({
             id: response.id
           });
-
           this.dialogRef.close(this.todoForm.value);
         },
-        (error) => {
+        error: (error) => {
           console.error("Error saving task", error);
         }
-      );
+      });
     }
   }
 }

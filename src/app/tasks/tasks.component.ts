@@ -5,6 +5,7 @@ import { TaskListComponent } from "./task-list/task-list.component";
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { AddTaskIconComponent } from "../shared/icons/add-task-icon/add-task-icon.component";
+import { Task } from './shared/task.interface';
 
 @Component({
   selector: 'app-tasks',
@@ -16,7 +17,7 @@ export class TasksComponent implements OnInit {
 
   unsubscribe$ = new Subject<void>();
 
-  todos: any[] = [];
+  todos: Task[] = [];
   
   constructor(
     private tasksService: TasksService,
@@ -29,7 +30,7 @@ export class TasksComponent implements OnInit {
     this.tasksService.getTaskList(userId)
     .pipe(
       takeUntil(this.unsubscribe$),
-      tap((res: any) => {
+      tap((res: Task[]) => {
         this.todos = res;
       }),
       catchError((err)=>{

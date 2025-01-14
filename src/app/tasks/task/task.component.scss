@@ -4,6 +4,11 @@
     font-weight: 500;
 }
 
+.task-content {
+    display: flex;
+    gap: 8px;
+}
+
 .description {
     font-size: 12px;
     line-height: 18px;
