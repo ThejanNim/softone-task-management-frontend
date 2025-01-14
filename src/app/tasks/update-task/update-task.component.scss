@@ -1,0 +1,35 @@
+.dialog-wrapper {
+    padding: 20px;
+}
+
+.create-task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 20px 0px;
+}
+
+.cancel-btn {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: black;
+}
+
+.add-btn {
+    background-color: #dc4c3e;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+}
+
+.modal-actions {
+    gap: 8px;
+    display: flex;
+}
+
+.input-field {
+    display: contents;
+}
