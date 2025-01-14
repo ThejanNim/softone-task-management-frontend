@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have the 'softone-task-management-frontend' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('softone-task-management-frontend');
+    expect(app).toEqual('softone-task-management-frontend');
   });
 
   it('should render title', () => {

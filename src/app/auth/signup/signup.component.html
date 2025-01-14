@@ -1,0 +1,55 @@
+<form (ngSubmit)="onSignUp()" class="signup-form">
+  <div class="form-group">
+    <label for="username" class="form-label">Username</label>
+    <input
+      type="text"
+      id="username"
+      class="form-input"
+      [(ngModel)]="userDetails.userName"
+      name="username"
+      required
+      placeholder="Enter your username"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="firstname" class="form-label">First Name</label>
+    <input
+      type="text"
+      id="firstname"
+      class="form-input"
+      [(ngModel)]="userDetails.firstName"
+      name="firstname"
+      required
+      placeholder="Enter your first name"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="lastname" class="form-label">Last Name</label>
+    <input
+      type="text"
+      id="lastname"
+      class="form-input"
+      [(ngModel)]="userDetails.lastName"
+      name="lastname"
+      required
+      placeholder="Enter your last name"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      id="password"
+      class="form-input"
+      [(ngModel)]="userDetails.password"
+      name="password"
+      required
+      placeholder="Enter a secure password"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Sign Up</button>
+</form>
