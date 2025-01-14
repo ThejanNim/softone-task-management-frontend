@@ -15,14 +15,14 @@ export class SigninComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSignIn() {
-    this.authService.signin(this.userDetails).subscribe(
-      (response: any) => {
+    this.authService.signin(this.userDetails).subscribe({
+      next: (response: any) => {
         this.router.navigate(['/tasks']);
         localStorage.setItem('userId', response.id);
       },
-      (error: any) => {
-        console.error('Error signing up', error);
+      error: (error: any) => {
+        console.error('Error signing in', error);
       }
-    );
+    });
   }
 }

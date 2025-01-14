@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TasksService } from '../shared/tasks.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Task } from '../shared/task.interface';
 
 @Component({
   selector: 'app-update-task',
@@ -19,7 +20,7 @@ export class UpdateTaskComponent {
       private taskService: TasksService,
       private fb: FormBuilder,
       public dialogRef: MatDialogRef<UpdateTaskComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: { todo?: any }
+      @Inject(MAT_DIALOG_DATA) public data: { todo?: Task }
     ) {
       this.todoForm = this.fb.group({
         title: [data.todo ? data.todo.title : ''],
@@ -32,13 +33,16 @@ export class UpdateTaskComponent {
     }
   
     onSave(): void {
-      if (this.todoForm.valid) {
-        this.taskService.updateTask({ 
+      if (this.todoForm.valid && this.data.todo) {
+        const updatedTask: Task = {
           id: this.data.todo.id,
           title: this.todoForm.value.title,
           description: this.todoForm.value.description,
-          userId: this.data.todo.userId
-        }).subscribe();
+          userId: this.data.todo.userId,
+          isChecked: this.data.todo.isChecked
+        };
+
+        this.taskService.updateTask(updatedTask).subscribe();
         this.dialogRef.close(this.todoForm.value);
       }
     }

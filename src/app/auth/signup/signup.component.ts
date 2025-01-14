@@ -18,15 +18,13 @@ export class SignupComponent {
   ) {}
 
   onSignUp() {
-    this.authService.signup(
-      this.userDetails
-    ).subscribe(
-      (response: any) => {
+    this.authService.signup(this.userDetails).subscribe({
+      next: (response: any) => {
         this.router.navigate(['/signin']);
       },
-      (error: any) => {
-        console.error("Error signing up", error);
+      error: (error: any) => {
+        console.error('Error signing up', error);
       }
-    );
+    });
   }
 }
